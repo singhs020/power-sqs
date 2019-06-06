@@ -1,0 +1,27 @@
+{
+  "name": "power-sqs",
+  "version": "0.0.1",
+  "description": "powerful functions to deal with AWS SQS",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simranjeet2589/power-sqs.git"
+  },
+  "keywords": [
+    "AWS SQS",
+    "SQS",
+    "copy SQS"
+  ],
+  "author": "Simranjeet Singh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://simranjeet2589.github.io/power-sqs/"
+  },
+  "homepage": "https://github.com/simranjeet2589/power-sqs#readme",
+  "dependencies": {
+    "aws-sdk": "^2.469.0"
+  }
+}

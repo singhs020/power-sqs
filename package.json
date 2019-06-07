@@ -23,5 +23,9 @@
   "homepage": "https://github.com/simranjeet2589/power-sqs#readme",
   "dependencies": {
     "aws-sdk": "^2.469.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^5.0.0"
   }
 }

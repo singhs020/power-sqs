@@ -20,8 +20,6 @@ class Reader extends Readable {
         this._logger.error("There was an error while reading data from SQS", err);
       }
 
-      console.log(data);
-
       this.push(JSON.stringify(data));
     });
   }

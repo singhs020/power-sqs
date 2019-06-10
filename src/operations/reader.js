@@ -20,17 +20,22 @@ class Reader extends Readable {
     this._params = {
       "QueueUrl": url,
       "MaxNumberOfMessages": 10,
-      "WaitTimeSeconds": 120
+      "WaitTimeSeconds": 10
     };
   }
   _read() {
     SQS.receiveMessage(this._params, (err, data) => {
       if(err) {
         this._logger.error("There was an error while reading data from SQS", err);
-        this.push(null);
+        return this.push(null);
       }
 
-      this.push(data);
+      if(Array.isArray(data.Messages)) {
+        return this.push(data);
+      }
+
+      this._logger.log("No messages found. Trying to read again...");
+      this._read();
     });
   }
 }

@@ -1,13 +1,9 @@
 const assert = require("assert");
-const AWS = require("aws-sdk");
 const {Readable} = require("stream");
-
-const SQS = new AWS.SQS({
-  "apiVersion": "2012-11-05"
-});
+const pino = require("pino");
 
 class Reader extends Readable {
-  constructor({url, logger}) {
+  constructor({url, logger, sqs}) {
     super({
       "objectMode": true,
       "highWatermark": 10
@@ -15,8 +11,10 @@ class Reader extends Readable {
 
     assert(url, "QueueUrl is required.");
     assert(logger, "logger is required.");
+    assert(sqs, "sqs is required.");
 
     this._logger = logger;
+    this._sqs = sqs;
     this._params = {
       "QueueUrl": url,
       "MaxNumberOfMessages": 10,
@@ -24,7 +22,7 @@ class Reader extends Readable {
     };
   }
   _read() {
-    SQS.receiveMessage(this._params, (err, data) => {
+    this._sqs.receiveMessage(this._params, (err, data) => {
       if(err) {
         this._logger.error("There was an error while reading data from SQS", err);
         return this.push(null);
@@ -34,10 +32,17 @@ class Reader extends Readable {
         return this.push(data);
       }
 
-      this._logger.log("No messages found. Trying to read again...");
+      this._logger.info("No messages found. Trying to read again...");
       this._read();
     });
   }
 }
 
-module.exports = Reader;
+module.exports = (config, sqs) => {
+  // validate config
+
+  const {url} = config;
+  const logger = pino({"name": "SQS Reader"});
+
+  return new Reader({url, sqs, logger});
+};

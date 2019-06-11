@@ -1,7 +1,9 @@
-const Reader = require("./reader");
-const Writer = require("./writer");
+const getReader = require("./reader");
+const getWriter = require("./writer");
+const getRemover = require("./remover");
 
 module.exports = {
-  Reader,
-  Writer
+  getReader,
+  getWriter,
+  getRemover
 };

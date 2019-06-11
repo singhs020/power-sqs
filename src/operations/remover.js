@@ -51,3 +51,5 @@ module.exports = (config, sqs) => {
 
   return new Remover({url, sqs, logger});
 };
+
+module.exports.Remover = Remover;

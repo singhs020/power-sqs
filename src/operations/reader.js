@@ -46,3 +46,5 @@ module.exports = (config, sqs) => {
 
   return new Reader({url, sqs, logger});
 };
+
+module.exports.Reader = Reader;

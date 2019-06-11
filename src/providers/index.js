@@ -1,5 +1,5 @@
-const SinkToSQS = require("./sinkToSQS");
+const getSinkToSQS = require("./sinkToSQS");
 
 module.exports = {
-  SinkToSQS
+  getSinkToSQS
 };

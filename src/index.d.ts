@@ -1,5 +1,4 @@
 import {Reader} from "./operations/reader";
-import {Remover} from "./operations/remover";
 
 interface IConfig {
   "url": string
@@ -11,5 +10,5 @@ interface ISinkConfig {
 }
 
 export function getSQSReader(config: IConfig) : Reader;
-export function getSQSMessageRemover(config: IConfig) : Remover;
+export function getSQSBulkReader(config: IConfig) : Reader;
 export function initSinkToSQS(config: ISinkConfig): undefined;

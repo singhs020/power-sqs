@@ -8,16 +8,21 @@
   ],
   "types": "src/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha 'test/**/*.spec.js'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simranjeet2589/power-sqs.git"
   },
   "keywords": [
-    "AWS SQS",
+    "AWS",
     "SQS",
-    "copy SQS"
+    "copy SQS",
+    "Simple Queue Service",
+    "Stream",
+    "SQS Stream",
+    "SQS Reader",
+    "Sink from SQS"
   ],
   "author": "Simranjeet Singh",
   "license": "MIT",
@@ -27,10 +32,14 @@
   "homepage": "https://github.com/simranjeet2589/power-sqs#readme",
   "dependencies": {
     "aws-sdk": "^2.469.0",
+    "highland": "^2.13.4",
     "pino": "^5.12.6"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "gulp": "^4.0.2",
-    "gulp-eslint": "^5.0.0"
+    "gulp-eslint": "^5.0.0",
+    "gulp-shell": "^0.7.1",
+    "mocha": "^6.1.4"
   }
 }

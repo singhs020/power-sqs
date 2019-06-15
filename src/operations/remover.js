@@ -44,8 +44,12 @@ class Remover extends Writable {
   }
 }
 
+function validateConfig(config = {}) {
+  assert(config.url, "The SQS Url is required by the Remover");
+}
+
 module.exports = (config, sqs) => {
-  // validate config
+  validateConfig(config);
   const {url} = config;
   const logger = pino({"name": "SQS Message Remover"});
 

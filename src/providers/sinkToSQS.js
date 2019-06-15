@@ -33,9 +33,13 @@ class SQSProvider {
   }
 }
 
+function validateConfig(config = {}) {
+  assert(config.url, "The SQS Url is required by the SQS Provider");
+}
+
 module.exports = config => {
 
-  // validate config
+  validateConfig(config)
 
   const {url} = config;
   const logger = pino({"name": "SQS Provider"});

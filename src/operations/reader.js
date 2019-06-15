@@ -3,7 +3,7 @@ const {Readable} = require("stream");
 const pino = require("pino");
 
 class Reader extends Readable {
-  constructor({url, logger, sqs}) {
+  constructor({url, logger, sqs, isBulkOps = false}) {
     super({
       "objectMode": true,
       "highWatermark": 10
@@ -15,6 +15,7 @@ class Reader extends Readable {
 
     this._logger = logger;
     this._sqs = sqs;
+    this._isBulkOps = isBulkOps;
     this._params = {
       "QueueUrl": url,
       "MaxNumberOfMessages": 10,
@@ -29,7 +30,15 @@ class Reader extends Readable {
       }
 
       if(Array.isArray(data.Messages)) {
-        return this.push(data);
+        if(this._isBulkOps) {
+          return this.push(data);
+        }
+
+        data.Messages.forEach(msg => {
+          this.push(msg);
+        });
+
+        return;
       }
 
       this._logger.info("No messages found. Trying to read again...");
@@ -42,13 +51,22 @@ function validateConfig(config = {}) {
   assert(config.url, "The SQS Url is required by the Reader");
 }
 
-module.exports = (config, sqs) => {
+module.exports.getReader = (config, sqs) => {
   validateConfig(config);
 
   const {url} = config;
   const logger = pino({"name": "SQS Reader"});
 
   return new Reader({url, sqs, logger});
+};
+
+module.exports.getBulkReader = (config, sqs) => {
+  validateConfig(config);
+
+  const {url} = config;
+  const logger = pino({"name": "SQS Bulk Reader"});
+
+  return new Reader({url, sqs, logger, "isBulkOps": true});
 };
 
 module.exports.Reader = Reader;

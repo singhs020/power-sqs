@@ -1,9 +1,10 @@
-const getReader = require("./reader");
+const {getReader, getBulkReader} = require("./reader");
 const getWriter = require("./writer");
-const getRemover = require("./remover");
+const getBulkRemover = require("./remover");
 
 module.exports = {
   getReader,
   getWriter,
-  getRemover
+  getBulkReader,
+  getBulkRemover
 };

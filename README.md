@@ -20,10 +20,10 @@ yarn add power-sqs
 
 Power SQS provides following functions to deal with AWS SQS
 
-### getSQSReader
-Returns a readable stream of messages with long polling of 10 seconds. The object mode is enabled in the stream and returns the complete data object returned from the AWS.
+## Reader
 
-The messgages in the pushed chunk can be accessed via the the Messages. It only pushes the data if it has any number of Messages attached to it otherwise it will keep on polling the SQS.
+### getSQSReader
+Returns a readable stream of messages with long polling of 10 seconds. The object mode is enabled in the stream and pushes single message across the pipe.
 
 ```javascript
 const {getSQSReader} = require("power-sqs");
@@ -37,25 +37,24 @@ sqsReader.pipe("stream of your choice.")
 
 ```
 
-### getSQSMessageRemover
-Returns a Writable stream for removing SQS messages in bulk. 
+### getSQSBulkReader
+Returns a readable stream of messages with long polling of 10 seconds. The object mode is enabled in the stream and returns the complete data object returned from the AWS.
 
-The chunk should be an object woth the Messages as the key to remove the data. Twhe chunk should follwo the same structure as returned by the AWS sqs while reading the message.
-
-The max number of batch allowed as per AWS is 10. Each message should have its MessageId and ReceiptHandle to delete the message.
+The messgages in the pushed chunk can be accessed via the the Messages. It only pushes the data if it has any number of Messages attached to it otherwise it will keep on polling the SQS.
 
 ```javascript
-const {getSQSMessageRemover, getSQSReader} = require("power-sqs");
+const {getSQSBulkReader} = require("power-sqs");
 
 const config = {"url": "your sqs url"};
-const sqsReader = getSQSReader(config);
-const sqsMessageRemover = getSQSMessageRemover(config);
+const sqsReader = getSQSBulkReader(config);
 
+// returns a Node.js readable stream.
 
-// reades and removes the message from SQS
-sqsReader.pipe(sqsMessageRemover);
+sqsReader.pipe("stream of your choice.")
 
 ```
+
+## Sink
 
 ### initSinkToSQS
 Allows you to move messages from one SQS to another in same AWS Account.

@@ -1,6 +1,6 @@
-const {src, series} = require("gulp");
+const {src, series, task} = require("gulp");
 const eslint = require("gulp-eslint");
-
+const shell = require("gulp-shell");
 
 function lint() {
   return src(["src/**/*.js"])
@@ -8,5 +8,7 @@ function lint() {
   .pipe(eslint.failAfterError());
 }
 
-exports.default = series([lint]);
+task("test", shell.task("./node_modules/mocha/bin/mocha 'test/**/*.spec.js'"));
+
+exports.default = series([lint, "test"]);
 exports.lint = lint;

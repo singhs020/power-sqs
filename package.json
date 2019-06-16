@@ -7,9 +7,6 @@
     "src"
   ],
   "types": "src/index.d.ts",
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha 'test/**/*.spec.js'"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simranjeet2589/power-sqs.git"
@@ -22,7 +19,8 @@
     "Stream",
     "SQS Stream",
     "SQS Reader",
-    "Sink from SQS"
+    "Sink from SQS",
+    "highland stream"
   ],
   "author": "Simranjeet Singh",
   "license": "MIT",
@@ -41,6 +39,7 @@
     "gulp-eslint": "^5.0.0",
     "gulp-shell": "^0.7.1",
     "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "sinon": "^7.3.2"
   }
 }

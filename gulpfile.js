@@ -8,7 +8,7 @@ function lint() {
   .pipe(eslint.failAfterError());
 }
 
-task("test", shell.task("./node_modules/mocha/bin/mocha 'test/**/*.spec.js'"));
+task("test", shell.task("nyc mocha 'test/**/*.spec.js'"));
 
 exports.default = series([lint, "test"]);
 exports.lint = lint;

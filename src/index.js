@@ -1,6 +1,6 @@
 const SQS = require("aws-sdk/clients/sqs");
 
-const {getReader, getBulkReader} = require("./operations");
+const {getReader, getBulkReader, getPowerReader} = require("./operations");
 const {initSinkToSQS} = require("./sink");
 
 const sqs = new SQS({
@@ -15,8 +15,13 @@ function getSQSBulkReader(config) {
   return getBulkReader(config, sqs);
 }
 
+function getSQSPowerReader(config) {
+  return getPowerReader(config, sqs);
+}
+
 module.exports = {
   getSQSReader,
   getSQSBulkReader,
+  getSQSPowerReader,
   initSinkToSQS
 }

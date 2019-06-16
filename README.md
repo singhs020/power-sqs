@@ -37,6 +37,25 @@ sqsReader.pipe("stream of your choice.")
 
 ```
 
+### getSQSPowerReader
+Returns a highland stream. The stream can then be used to apply transformers like filter, map, find and etc to generate a stream of data before piping it to another stream.
+
+Please see [highland transformers](https://highlandjs.org/#Transforms) for more information.
+
+```javascript
+const {getSQSPowerReader} = require("power-sqs");
+
+const config = {"url": "your sqs url"};
+const sqsReader = getSQSPowerReader(config);
+
+// returns a Node.js readable stream.
+
+sqsReader.filter(() => {
+  // filter logic
+}).pipe("stream of your choice");
+
+```
+
 ### getSQSBulkReader
 Returns a readable stream of messages with long polling of 10 seconds. The object mode is enabled in the stream and returns the complete data object returned from the AWS.
 

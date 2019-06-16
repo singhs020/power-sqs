@@ -30,7 +30,7 @@ class Reader extends Readable {
       }
 
       if(Array.isArray(data.Messages)) {
-        if(this._isBulkOps) {
+        if(this._isBulkOps === true) {
           return this.push(data);
         }
 

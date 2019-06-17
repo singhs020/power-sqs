@@ -9,9 +9,9 @@ class Remover extends Writable {
       "highWatermark": 10
     });
 
-    assert(url, "url is required");
-    assert(sqs, "sqs is required");
-    assert(logger, "logger is required");
+    assert(url, "QueueUrl is required.");
+    assert(logger, "logger is required.");
+    assert(sqs, "sqs is required.");
 
     this._logger = logger;
     this._sourceUrl = url;

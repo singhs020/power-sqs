@@ -9,8 +9,8 @@ class Writer extends Transform {
       "highWatermark": 10
     });
 
-    assert(provider, "provider is required");
-    assert(logger, "logger is required");
+    assert(provider, "provider is required.");
+    assert(logger, "logger is required.");
 
     this._logger = logger;
     this._provider = provider;
@@ -24,7 +24,11 @@ class Writer extends Transform {
 }
 
 module.exports = provider => {
+  assert(provider, "The provider is required to Sink.");
+
   const logger = pino({"name": "Writer"});
 
   return new Writer({provider, logger});
 };
+
+module.exports.Writer = Writer;

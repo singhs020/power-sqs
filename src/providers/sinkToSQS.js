@@ -6,6 +6,7 @@ class SQSProvider {
   constructor({logger, url, sqs}) {
 
     assert(logger, "logger is required.");
+    assert(url, "url is required.");
     assert(sqs, "sqs is required.");
 
     this._sqs = sqs;

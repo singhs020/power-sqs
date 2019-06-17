@@ -6,7 +6,7 @@ class SQSProvider {
   constructor({logger, url, sqs}) {
 
     assert(logger, "logger is required.");
-    assert(url, "url is required.");
+    assert(url, "QueueUrl is required.");
     assert(sqs, "sqs is required.");
 
     this._sqs = sqs;
@@ -35,7 +35,7 @@ class SQSProvider {
 }
 
 function validateConfig(config = {}) {
-  assert(config.url, "The SQS Url is required by the SQS Provider");
+  assert(config.url, "The SQS Url is required by the SQS Provider.");
 }
 
 module.exports = config => {
@@ -50,3 +50,5 @@ module.exports = config => {
 
   return new SQSProvider({url, sqs, logger});
 };
+
+module.exports.SQSProvider = SQSProvider;

@@ -39,7 +39,10 @@ class Remover extends Writable {
 
   _write(chunk, encoding, cb) {
     return this._deleteMessages(chunk)
-      .then(() => cb())
+      .then(() => {
+        this._logger.info(`Number of messages pushed: ${chunk.Messages.length}`);
+        cb();
+      })
       .catch(err => cb(err));
   }
 }

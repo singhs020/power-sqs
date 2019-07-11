@@ -18,7 +18,10 @@ class Writer extends Transform {
 
   _transform(chunk, encoding, cb) {
     return this._provider.sink(chunk)
-      .then(() => this.push(chunk))
+      .then(() => {
+        this.push(chunk);
+        cb();
+      })
       .catch(err => cb(err));
   }
 }

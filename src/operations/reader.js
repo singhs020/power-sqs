@@ -3,7 +3,7 @@ const {Readable} = require("stream");
 const pino = require("pino");
 
 class Reader extends Readable {
-  constructor({url, logger, sqs, isBulkOps = false}) {
+  constructor({url, logger, sqs, isBulkOps = false, stopOnEmpty = false}) {
     super({
       "objectMode": true,
       "highWatermark": 10
@@ -21,6 +21,8 @@ class Reader extends Readable {
       "MaxNumberOfMessages": 10,
       "WaitTimeSeconds": 10
     };
+    this._counter = 0;
+    this._stopOnEmpty = stopOnEmpty;
   }
   _read() {
     this._sqs.receiveMessage(this._params, (err, data) => {
@@ -30,6 +32,8 @@ class Reader extends Readable {
       }
 
       if(Array.isArray(data.Messages)) {
+        this._counter = 0;
+
         if(this._isBulkOps === true) {
           return this.push(data);
         }
@@ -41,7 +45,14 @@ class Reader extends Readable {
         return;
       }
 
+      if(this._stopOnEmpty === true && this._counter > 4) {
+        this._logger.info("No messages found for 5 retries. closing the connection");
+        this.push(null);
+        process.exit(0);
+      }
+
       this._logger.info("No messages found. Trying to read again...");
+      this._counter++;
       this._read();
     });
   }
@@ -63,10 +74,10 @@ module.exports.getReader = (config, sqs) => {
 module.exports.getBulkReader = (config, sqs) => {
   validateConfig(config);
 
-  const {url} = config;
+  const {url, stopOnEmpty} = config;
   const logger = pino({"name": "SQS Bulk Reader"});
 
-  return new Reader({url, sqs, logger, "isBulkOps": true});
+  return new Reader({url, sqs, logger, stopOnEmpty, "isBulkOps": true});
 };
 
 module.exports.Reader = Reader;

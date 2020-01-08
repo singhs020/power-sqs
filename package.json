@@ -9,7 +9,7 @@
   "types": "src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simranjeet2589/power-sqs.git"
+    "url": "git+https://github.com/simranjeetsingh001/power-sqs.git"
   },
   "keywords": [
     "AWS",
@@ -25,9 +25,9 @@
   "author": "Simranjeet Singh",
   "license": "MIT",
   "bugs": {
-    "url": "https://simranjeet2589.github.io/power-sqs/"
+    "url": "https://simranjeetsingh001.github.io/power-sqs/"
   },
-  "homepage": "https://github.com/simranjeet2589/power-sqs#readme",
+  "homepage": "https://github.com/simranjeetsingh001/power-sqs#readme",
   "dependencies": {
     "aws-sdk": "^2.552.0",
     "highland": "^2.13.5",

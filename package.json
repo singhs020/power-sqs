@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/singhs020/power-sqs.git"
   },
+  "scripts": {
+    "travis": "gulp"
+  },
   "keywords": [
     "AWS",
     "SQS",

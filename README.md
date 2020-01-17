@@ -1,4 +1,4 @@
-[![NPM](https://nodei.co/npm/power-sqs.png?downloads=true)](https://www.npmjs.com/package/power-sqs/)
+[![NPM](https://nodei.co/npm/power-sqs.png?downloads=true)](https://www.npmjs.com/package/power-sqs/) [![Greenkeeper badge](https://badges.greenkeeper.io/singhs020/power-sqs.svg)](https://greenkeeper.io/)
 
 ## power-sqs
 

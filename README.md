@@ -1,4 +1,4 @@
-[![Travis badge](https://travis-ci.org/singhs020/power-sqs.svg?branch=master)][![Greenkeeper badge](https://badges.greenkeeper.io/singhs020/power-sqs.svg)](https://greenkeeper.io/)
+![Travis badge](https://travis-ci.org/singhs020/power-sqs.svg?branch=master)[![Greenkeeper badge](https://badges.greenkeeper.io/singhs020/power-sqs.svg)](https://greenkeeper.io/)
 
 [![NPM](https://nodei.co/npm/power-sqs.png?downloads=true)](https://www.npmjs.com/package/power-sqs/)
 

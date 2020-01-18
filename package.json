@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://singhs020.github.io/power-sqs/"
   },
-  "homepage": "https://github.com/singhs020/power-sqs#readme",
+  "homepage": "https://singhs020.github.io/power-sqs/",
   "dependencies": {
     "aws-sdk": "^2.552.0",
     "highland": "^2.13.5",

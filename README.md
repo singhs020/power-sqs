@@ -4,7 +4,7 @@
 
 ## power-sqs
 
-Power-SQS is a set of powerful functions to deal with AWS SQS. It includes stream to read messages, move messagezs from one SQS to another or to a persistent data store.
+Power-SQS is a set of powerful functions to deal with AWS SQS. It includes stream to read messages, move messages from one SQS to another or to a persistent data store.
 
 If you just want to use sink operations, there is an option availble to use them via cli. Please see [power-sqs-cli](https://www.npmjs.com/package/power-sqs-cli)
 

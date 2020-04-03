@@ -1,11 +1,18 @@
 const SQS = require("aws-sdk/clients/sqs");
 
-const {getReader, getBulkReader, getPowerReader} = require("./operations");
+const {
+  getReader,
+  getBulkReader,
+  getPowerReader,
+  getDeleteMessageFunc
+} = require("./operations");
 const {initSinkToSQS} = require("./sink");
 
 const sqs = new SQS({
   "apiVersion": "2012-11-05"
 });
+
+const deleteMessages = getDeleteMessageFunc(sqs);
 
 function getSQSReader(config) {
   return getReader(config, sqs);
@@ -23,5 +30,6 @@ module.exports = {
   getSQSReader,
   getSQSBulkReader,
   getSQSPowerReader,
+  deleteMessages,
   initSinkToSQS
 }

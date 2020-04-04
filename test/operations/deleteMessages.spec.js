@@ -14,9 +14,10 @@ const invalidMessages = [
     "Id": "invalidFoo"
   }
 ];
+const success = {"message": "success"};
 const sqs = {
   "deleteMessageBatch": stub().returns({
-    "promise": stub().resolves()
+    "promise": stub().resolves(success)
   })
 };
 const deleteMessages = getDeleteMessageFunc(sqs);
@@ -40,6 +41,13 @@ describe("the deleteMessages Method", () => {
     it("should throw an error", () => {
       return deleteMessages(queueUrl, invalidMessages)
         .catch(err => expect(err.message).to.equal("Message must contain an Id and ReceiptHandle."));
+    });
+  });
+
+  describe("when deleteMessages is called with valid messages", () => {
+    it("should return the response", () => {
+      return deleteMessages(queueUrl, validMessages)
+        .then(res => expect(res).to.deep.equal(success));
     });
   });
 });

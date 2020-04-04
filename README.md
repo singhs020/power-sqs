@@ -91,6 +91,19 @@ initSinkToSQS(config);
 
 ```
 
+## DeleteMessages
+Allows you to delete the messages in batch
+
+```javascript
+const {deleteMessages} = require("power-sqs");
+
+const queueUrl = "your sqs url";
+const messages = [{}] // array of messages you want to delete
+
+return deleteMessages(queueUrl, messages)
+.then(res => console.log(res));
+```
+
 ### Support or Contact
 
 Having trouble with power-sqs or have any questions? Please raise an issue.

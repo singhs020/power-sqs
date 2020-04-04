@@ -1,13 +1,23 @@
+const assert = require("assert");
+
 function getDeleteMessageFunc(sqs) {
-  return (queueUrl, data) => {
-    const messages = data.map(item => ({"Id": item.MessageId, "ReceiptHandle": item.ReceiptHandle}));
+  return async (queueUrl, messages) => {
+    assert((queueUrl && typeof queueUrl === "string"), "Queue Url maust be a valid string.");
+    assert((Array.isArray(messages) && messages.length > 0), "Messages must be an array of messages from sqs.");
+
+    // validate messages
+    messages.forEach(msg => {
+      assert((msg.Id && msg.ReceiptHandle), "Message must contain an Id and ReceiptHandle.");
+    });
+
+    const entries = messages.map(item => ({"Id": item.MessageId, "ReceiptHandle": item.ReceiptHandle}));
 
     const params = {
       "QueueUrl": queueUrl,
-      "Entries": messages
+      "Entries": entries
     };
 
-    return sqs.deleteMessageBatch(params).promise();
+    return await sqs.deleteMessageBatch(params).promise();
   }
 }
 

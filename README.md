@@ -104,6 +104,34 @@ return deleteMessages(queueUrl, messages)
 .then(res => console.log(res));
 ```
 
+## SendMessages
+Allows you to send the messages in batch
+
+```javascript
+const {sendMessages} = require("power-sqs");
+
+const queueUrl = "your sqs url";
+const messages = [{"foo": "bar"}] // data you want to send as messages
+
+return sendMessages(queueUrl, messages)
+.then(res => console.log(res));
+```
+
+## receiveMessages
+Allows you to receive the messages from a sqs. If you are looking for something to poll continuously, have a look at other reader functions which provide streaming and filtering options too.
+
+```javascript
+const {sendMessages} = require("power-sqs");
+
+const queueUrl = "your sqs url";
+
+return receiveMessages(queueUrl)
+.then(res => console.log(res));
+```
+
+## Examples
+some of the examples related to specifically single operations like sendMessages, deleteMessages etc are provided in [examples](./examples) directory.
+
 ### Support or Contact
 
 Having trouble with power-sqs or have any questions? Please raise an issue.

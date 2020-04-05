@@ -5,7 +5,8 @@ function init() {
   const messages = [{
       "foo": "bar"
     }, 
-    "test"
+    "test",
+    1
   ];
   return sendMessages(queueUrl, messages)
   .then(res => console.log(res)); // eslint-disable-line no-console

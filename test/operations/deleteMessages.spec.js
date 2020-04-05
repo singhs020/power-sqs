@@ -14,10 +14,13 @@ const invalidMessages = [
     "Id": "invalidFoo"
   }
 ];
-const success = {"message": "success"};
+const awsRes = {
+  "Failed": [],
+  "Successful": []
+};
 const sqs = {
   "deleteMessageBatch": stub().returns({
-    "promise": stub().resolves(success)
+    "promise": stub().resolves(awsRes)
   })
 };
 const deleteMessages = getDeleteMessageFunc(sqs);
@@ -47,7 +50,10 @@ describe("the deleteMessages Method", () => {
   describe("when deleteMessages is called with valid messages", () => {
     it("should return the response", () => {
       return deleteMessages(queueUrl, validMessages)
-        .then(res => expect(res).to.deep.equal(success));
+        .then(res => expect(res).to.deep.equal({
+          "failed": awsRes.Failed,
+          "successful": awsRes.Successful
+        }));
     });
   });
 });

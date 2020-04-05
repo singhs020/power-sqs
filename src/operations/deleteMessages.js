@@ -17,7 +17,12 @@ function getDeleteMessageFunc(sqs) {
       "Entries": entries
     };
 
-    return await sqs.deleteMessageBatch(params).promise();
+    const {Failed, Successful} = await sqs.deleteMessageBatch(params).promise();
+
+    return {
+      "failed": Failed,
+      "successful": Successful
+    };
   }
 }
 

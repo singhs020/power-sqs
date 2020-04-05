@@ -39,15 +39,15 @@ describe("the sendMessages Method", () => {
         .then(res => {
           expect(res.successful).to.deep.equal(awsRes.Successful);
           expect(res.failed).to.deep.equal(awsRes.Failed);
-          expect(res.entries[0].MessageBody).to.deep.equal({
+          expect(res.entries[0].MessageBody).to.deep.equal(JSON.stringify({
             "body": messages[0]
-          });
-          expect(res.entries[1].MessageBody).to.deep.equal({
+          }));
+          expect(res.entries[1].MessageBody).to.deep.equal(JSON.stringify({
             "body": messages[1]
-          });
-          expect(res.entries[2].MessageBody).to.deep.equal({
+          }));
+          expect(res.entries[2].MessageBody).to.deep.equal(JSON.stringify({
             "body": messages[2]
-          });
+          }));
         });
     });
   });
@@ -58,15 +58,15 @@ describe("the sendMessages Method", () => {
         .then(res => {
           expect(res.successful).to.deep.equal(awsRes.Successful);
           expect(res.failed).to.deep.equal(awsRes.Failed);
-          expect(res.entries[0].MessageBody).to.deep.equal({
+          expect(res.entries[0].MessageBody).to.deep.equal(JSON.stringify({
             "body": Buffer.from(JSON.stringify(messages[0])).toString("base64")
-          });
-          expect(res.entries[1].MessageBody).to.deep.equal({
+          }));
+          expect(res.entries[1].MessageBody).to.deep.equal(JSON.stringify({
             "body": Buffer.from(String(messages[1])).toString("base64")
-          });
-          expect(res.entries[2].MessageBody).to.deep.equal({
+          }));
+          expect(res.entries[2].MessageBody).to.deep.equal(JSON.stringify({
             "body": Buffer.from(String(messages[2])).toString("base64")
-          });
+          }));
         });
     });
   });

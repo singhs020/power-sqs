@@ -12,9 +12,7 @@ function getSendMessageFunc(sqs) {
       const body = options.encode === true ? Buffer.from(strBody).toString("base64") : item;
       return {
         "Id": uuidV4(),
-        "MessageBody": {
-          "body": body
-        }
+        "MessageBody": JSON.stringify({"body": body})
       };
     });
 

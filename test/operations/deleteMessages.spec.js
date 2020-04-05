@@ -5,7 +5,7 @@ const getDeleteMessageFunc = require("../../src/operations/deleteMessages");
 
 const queueUrl = "thisisaqueueUrl";
 const validMessages = [{
-  "Id": "foo",
+  "MessageId": "foo",
   "ReceiptHandle": "bar"
 }];
 const invalidMessages = [

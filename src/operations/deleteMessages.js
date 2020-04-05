@@ -7,7 +7,7 @@ function getDeleteMessageFunc(sqs) {
 
     // validate messages
     messages.forEach(msg => {
-      assert((msg.Id && msg.ReceiptHandle), "Message must contain an Id and ReceiptHandle.");
+      assert((msg.MessageId && msg.ReceiptHandle), "Message must contain an Id and ReceiptHandle.");
     });
 
     const entries = messages.map(item => ({"Id": item.MessageId, "ReceiptHandle": item.ReceiptHandle}));
@@ -17,7 +17,12 @@ function getDeleteMessageFunc(sqs) {
       "Entries": entries
     };
 
-    return await sqs.deleteMessageBatch(params).promise();
+    const {Failed, Successful} = await sqs.deleteMessageBatch(params).promise();
+
+    return {
+      "failed": Failed,
+      "successful": Successful
+    };
   }
 }
 

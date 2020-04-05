@@ -4,6 +4,7 @@ const getWriter = require("./writer");
 const getBulkRemover = require("./remover");
 const getDeleteMessageFunc = require("./deleteMessages");
 const getSendMessageFunc = require("./sendMessages");
+const getReceiveMessagesFunc = require("./receiveMessages");
 
 module.exports = {
   getReader,
@@ -12,5 +13,6 @@ module.exports = {
   getBulkRemover,
   getPowerReader,
   getDeleteMessageFunc,
-  getSendMessageFunc
+  getSendMessageFunc,
+  getReceiveMessagesFunc
 };

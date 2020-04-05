@@ -75,22 +75,6 @@ sqsReader.pipe("stream of your choice.")
 
 ```
 
-## Sink
-
-### initSinkToSQS
-Allows you to move messages from one SQS to another in same AWS Account.
-
-```javascript
-const {initSinkToSQS} = require("power-sqs");
-
-const source = {"url": "your sqs url"};
-const destination = {"url": "your sqs url"};
-const config = {source, destination};
-
-initSinkToSQS(config);
-
-```
-
 ## DeleteMessages
 Allows you to delete the messages in batch
 
@@ -127,6 +111,23 @@ const queueUrl = "your sqs url";
 
 return receiveMessages(queueUrl)
 .then(res => console.log(res));
+```
+
+
+## Sink
+
+### initSinkToSQS
+Allows you to move messages from one SQS to another in same AWS Account.
+
+```javascript
+const {initSinkToSQS} = require("power-sqs");
+
+const source = {"url": "your sqs url"};
+const destination = {"url": "your sqs url"};
+const config = {source, destination};
+
+initSinkToSQS(config);
+
 ```
 
 ## Examples

@@ -3,7 +3,7 @@ const {"v4": uuidV4} = require("uuid");
 
 function getSendMessageFunc(sqs) {
   return async (queueUrl, messages, options = {}) => {
-    assert((queueUrl && typeof queueUrl === "string"), "Queue Url maust be a valid string.");
+    assert((queueUrl && typeof queueUrl === "string"), "Queue Url must be a valid string.");
     assert((Array.isArray(messages) && messages.length > 0), "Messages must be an array.");
 
     const entries = messages.map(item => {

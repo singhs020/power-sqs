@@ -101,6 +101,20 @@ return sendMessages(queueUrl, messages)
 .then(res => console.log(res));
 ```
 
+## SendFifoMessages
+Allows you to send the messages in batch
+
+```javascript
+const {sendFifoMessages} = require("power-sqs");
+
+const queueUrl = "your sqs url";
+const group = "groupid";
+const messages = [{"foo": "bar"}] // data you want to send as messages
+
+return sendFifoMessages(queueUrl, group, messages)
+.then(res => console.log(res));
+```
+
 ## receiveMessages
 Allows you to receive the messages from a sqs. If you are looking for something to poll continuously, have a look at other reader functions which provide streaming and filtering options too.
 

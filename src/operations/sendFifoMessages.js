@@ -1,7 +1,7 @@
 const assert = require("assert");
 const {"v4": uuidV4} = require("uuid");
 
-function getSendMessageFifoFunc(sqs) {
+function getSendFifoMessageFunc(sqs) {
   return async (queueUrl, group, messages, options = {}) => {
     assert((queueUrl && typeof queueUrl === "string"), "Queue Url maust be a valid string.");
     assert((group && typeof group === "string"), "group maust be a valid string.");
@@ -33,4 +33,4 @@ function getSendMessageFifoFunc(sqs) {
   }
 }
 
-module.exports = getSendMessageFifoFunc;
+module.exports = getSendFifoMessageFunc;

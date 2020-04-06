@@ -6,7 +6,8 @@ const {
   getPowerReader,
   getDeleteMessageFunc,
   getSendMessageFunc,
-  getReceiveMessagesFunc
+  getReceiveMessagesFunc,
+  getSendMessageFifoFunc
 } = require("./operations");
 const {initSinkToSQS} = require("./sink");
 
@@ -16,6 +17,7 @@ const sqs = new SQS({
 
 const deleteMessages = getDeleteMessageFunc(sqs);
 const sendMessages = getSendMessageFunc(sqs);
+const sendMessagesFifo = getSendMessageFifoFunc(sqs);
 const receiveMessages = getReceiveMessagesFunc(sqs);
 
 function getSQSReader(config) {
@@ -36,6 +38,7 @@ module.exports = {
   getSQSPowerReader,
   deleteMessages,
   sendMessages,
+  sendMessagesFifo,
   receiveMessages,
   initSinkToSQS
 }

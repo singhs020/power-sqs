@@ -27,6 +27,7 @@ interface IReceiveMessagesResponse {
 export function deleteMessages(queueUrl: string, messages: object[]) : Promise<ISingleOpResponse>;
 export function receiveMessages(queueUrl: string) : Promise<IReceiveMessagesResponse>;
 export function sendMessages(queueUrl: string, messages: any[], options?: ISendMessageOpts) : Promise<ISingleOpResponse>;
+export function sendMessagesFifo(queueUrl: string, group: string, messages: any[], options?: ISendMessageOpts) : Promise<ISingleOpResponse>;
 export function getSQSReader(config: IConfig) : Reader;
 export function getSQSBulkReader(config: IConfig) : Reader;
 export function getSQSPowerReader(config: IConfig) : Highland;

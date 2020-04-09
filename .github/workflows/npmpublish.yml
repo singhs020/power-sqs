@@ -1,0 +1,50 @@
+  
+# This workflow will run tests using node and then publish a package to npm if the commit message has either path or minor in it.
+
+name: Node.js Package Publisher
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '10', '12' ]
+    name: Node ${{matrix.node}}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        name: Setup Node
+        with:
+          node-version: ${{matrix.node}}
+      - run: npm test
+
+  publish-npm:
+    needs: build
+    if: startsWith(github.event.head_commit.message, 'release')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - name: setup git
+        run: |
+          git config user.email "me@simranjeetsingh.in"
+          git config user.name "Github Actions"
+      - name: bump a patch version
+        if: contains(github.event.head_commit.message, 'patch')
+        run: npm version patch -m "Upgrading to %s"
+      - name: bump a minor version
+        if: contains(github.event.head_commit.message, 'minor')
+        run: npm version patch -m "Upgrading to %s"
+      - name: publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: push to repo
+        run: git push origin master && git push origin --tags

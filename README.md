@@ -1,4 +1,5 @@
-![Travis badge](https://travis-ci.org/singhs020/power-sqs.svg?branch=master) 
+![Travis badge](https://travis-ci.org/singhs020/power-sqs.svg?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/singhs020/power-sqs/badge.svg)](https://snyk.io/test/github/singhs020/power-sqs)
 
 [![NPM](https://nodei.co/npm/power-sqs.png?downloads=true)](https://www.npmjs.com/package/power-sqs/)
 

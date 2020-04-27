@@ -34,7 +34,7 @@
   "dependencies": {
     "aws-sdk": "^2.663.0",
     "highland": "^2.13.5",
-    "pino": "^6.2.0",
+    "pino": "^6.2.1",
     "uuid": "^7.0.3"
   },
   "devDependencies": {

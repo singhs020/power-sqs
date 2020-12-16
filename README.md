@@ -150,4 +150,4 @@ some of the examples related to specifically single operations like sendMessages
 
 ### Support or Contact
 
-Having trouble with power-sqs or have any questions? Please raise an issue.
+Having trouble with power-sqs or have any questions? Please raise an issue

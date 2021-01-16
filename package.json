@@ -1,6 +1,6 @@
 {
   "name": "power-sqs",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "powerful functions to deal with AWS SQS",
   "main": "src/index.js",
   "files": [

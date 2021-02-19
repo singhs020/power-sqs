@@ -17,7 +17,8 @@ interface ISingleOpResponse {
 }
 
 interface ISendMessageOpts {
-  "encode": boolean
+  "encode": boolean,
+  "useWrapper"?: boolean
 }
 
 interface IReceiveMessagesResponse {

@@ -7,13 +7,15 @@ function getSendFifoMessageFunc(sqs) {
     assert((group && typeof group === "string"), "group must be a valid string.");
     assert((Array.isArray(messages) && messages.length > 0), "Messages must be an array.");
 
+    const {useWrapper = true} = options;
+
     const entries = messages.map(item => {
       const strBody = typeof item === "object" ? JSON.stringify(item) : String(item);
 
       const body = options.encode === true ? Buffer.from(strBody).toString("base64") : item;
       return {
         "Id": uuidV4(),
-        "MessageBody": JSON.stringify({"body": body}),
+        "MessageBody": useWrapper === true ? JSON.stringify({"body": body}) : item,
         "MessageGroupId": group
       };
     });

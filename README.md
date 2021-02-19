@@ -16,7 +16,7 @@ npm install power-sqs
 ```
 
 ```javascript
-yarn add power-sqs 
+yarn add power-sqs
 ```
 
 ## How To Use

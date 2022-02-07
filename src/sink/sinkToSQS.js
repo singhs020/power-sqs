@@ -1,6 +1,6 @@
 const SQS = require("aws-sdk/clients/sqs");
 
-const {getBulkReader, getWriter, getBulkRemover} = require("../operations");
+const {getWriter, getBulkRemover, getReader} = require("../operations");
 const {getSinkToSQS} = require("../providers");
 
 const sqs = new SQS({
@@ -12,7 +12,7 @@ module.exports = config => {
   // validate config -- add schema
 
   const provider = getSinkToSQS(config.destination);
-  const reader = getBulkReader(config.source, sqs);
+  const reader = getReader({"isBukOp": true, ...config.source}, sqs);
   const writer = getWriter(provider);
   const remover = getBulkRemover(config.source, sqs);
 

@@ -2,7 +2,7 @@ const {assert} = require("chai");
 const {spy} = require("sinon");
 const {Readable} = require("stream");
 
-const {getBulkReader, getReader} = require("../../src/operations");
+const {getReader} = require("../../src/operations");
 const {Reader} = require("../../src/operations/reader");
 
 const url = "foo:bar";
@@ -47,18 +47,6 @@ describe("The Reader Operation", () => {
 
     it("should return an instance of Reader Class", () => {
       const reader = getReader({url}, getSQSMock());
-
-      assert.instanceOf(reader, Reader);
-    });
-  });
-
-  describe("The getBulkReader method", () => {
-    it("should throw an error when url is not passed in config", () => {
-      assert.throw(() => getBulkReader({}), "The SQS Url is required by the Reader");
-    });
-
-    it("should return an instance of Reader Class", () => {
-      const reader = getBulkReader({url}, getSQSMock());
 
       assert.instanceOf(reader, Reader);
     });

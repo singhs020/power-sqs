@@ -65,19 +65,10 @@ function validateConfig(config = {}) {
 module.exports.getReader = (config, sqs) => {
   validateConfig(config);
 
-  const {url} = config;
+  const {url, stopOnEmpty, isBulkOps} = config;
   const logger = pino({"name": "SQS Reader"});
 
-  return new Reader({url, sqs, logger});
-};
-
-module.exports.getBulkReader = (config, sqs) => {
-  validateConfig(config);
-
-  const {url, stopOnEmpty} = config;
-  const logger = pino({"name": "SQS Bulk Reader"});
-
-  return new Reader({url, sqs, logger, stopOnEmpty, "isBulkOps": true});
+  return new Reader({url, sqs, logger, stopOnEmpty, isBulkOps});
 };
 
 module.exports.Reader = Reader;

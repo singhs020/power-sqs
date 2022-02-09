@@ -39,7 +39,7 @@ class Reader extends Readable {
         }
 
         data.Messages.forEach(msg => {
-          this.push(msg);
+          this.push({"Messages": [msg]});
         });
 
         return;

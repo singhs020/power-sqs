@@ -141,7 +141,7 @@ describe("The Reader Operation", () => {
         const reader = new Reader({url, logger, sqs});
 
         reader.on("data", chunk => {
-          assert.deepEqual(chunk, messages.Messages[0]);
+          assert.deepEqual(chunk, {"Messages": [messages.Messages[0]]});
           reader.destroy();
         });
 

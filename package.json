@@ -34,7 +34,7 @@
   "homepage": "https://singhs020.github.io/power-sqs/",
   "dependencies": {
     "aws-sdk": "^2.1499.0",
-    "@types/highland": "^2.12.19",
+    "@types/highland": "^2.12.20",
     "highland": "^2.13.5",
     "pino": "^6.14.0",
     "uuid": "^8.3.2"
